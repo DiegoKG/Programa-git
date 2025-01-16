@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados ReWear</title>
+
+    <link rel="stylesheet" href="styles/resultados.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo"><img src="images/rewear-logo-comp.png" alt=""></a>
+        </div>
+    
+
+    <ul class="navmenu">
+        <li><a href="#">Todo</a></li>
+        <li><a href="#">Camisas</a></li>
+        <li><a href="#">Pantalones</a></li>
+        <li><a href="#">Jeans</a></li>
+        <li><a href="#">Chaquetas</a></li>
+        <li><a href="#">Accesorios</a></li>
+    </ul>
+    
+    <div class="nav-icon">
+        <a href="#"><i class='bx bx-user'></i></a>
+        <a href="#"><i class='bx bx-cart-alt'></i></a>
+
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </div>
+
+    </header>
+    <div class="search-container">
+        
+        <input type="search" placeholder="Buscar..." name="search" class="search-input">
+        <button class="search-button" aria-label="Buscar">
+            <i class="fas fa-search"></i>
+        </button>     
+    </div>
+
+    <div class="filter-container">
+
+        <div class="bx bx-filter" id="filter-icon" onclick="toggleFilterBar()"></div>
+
+        <div class="filterbar" id="filterbar">
+
+            <div class="filter-section">
+                <div class="filter-item" onclick="toggleDropdown('gender')">Genero</div>
+                <div class="dropdown-content" id="gender">
+                    <label><input type="checkbox" name="gender" value="hombre"> Hombre</label>
+                    <label><input type="checkbox" name="gender" value="mujer"> Mujer</label>
+                    <label><input type="checkbox" name="gender" value="niño"> Niño</label>
+                    <label><input type="checkbox" name="gender" value="niña"> Niña</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-item" onclick="toggleDropdown('category')">Categoría</div>
+                <div class="dropdown-content" id="category">
+                    <label><input type="checkbox" name="category" value="camisetas"> Camisetas</label>
+                    <label><input type="checkbox" name="category" value="camisas"> Camisas</label>
+                    <label><input type="checkbox" name="category" value="polos"> Polos</label>
+                    <label><input type="checkbox" name="category" value="chaquetas"> Chaquetas</label>
+                    <label><input type="checkbox" name="category" value="pantalones"> Pantalones</label>
+                    <label><input type="checkbox" name="category" value="jeans"> Jeans</label>
+                    <label><input type="checkbox" name="category" value="bermudas"> Bermudas</label>
+                    <label><input type="checkbox" name="category" value="zapatos"> Zapatos</label>
+                    <label><input type="checkbox" name="category" value="accesorios"> Accesorios</label>
+                </div>
+            </div>
+    
+            <div class="filter-section">
+                <div class="filter-item" onclick="toggleDropdown('size')">Talla</div>
+                <div class="dropdown-content" id="size">
+                    <label><input type="checkbox" name="size" value="xs"> XS</label>
+                    <label><input type="checkbox" name="size" value="s"> S</label>
+                    <label><input type="checkbox" name="size" value="m"> M</label>
+                    <label><input type="checkbox" name="size" value="l"> L</label>
+                    <label><input type="checkbox" name="size" value="xl"> XL</label>
+                    <label><input type="checkbox" name="size" value="xxl"> XXL</label>
+                </div>
+            </div>
+    
+            <div class="filter-section">
+
+                <div class="filter-item" onclick="toggleDropdown('color')">Color</div>
+                <div class="dropdown-content" id="color">
+                    <span class="color-circle" style="background-color: purple;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: orangered;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: blue;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: violet;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: black;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: yellow;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: red;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: skyblue;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: grey;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: green;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: darkgrey;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: olivedrab;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: darkgreen;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: rgb(165, 248, 165);" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: rgb(104, 7, 7);" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: rgb(73, 77, 69);" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: pink;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: yellowgreen;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: black;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: burlywood;" onclick="selectColor(this)"></span>
+                    <span class="color-circle" style="background-color: rgb(92, 59, 90);" onclick="selectColor(this)"></span>
+                </div>
+            </div>
+    
+            <div class="filter-section">
+                <div class="filter-item" onclick="toggleDropdown('brand')">Marca</div>
+                <div class="dropdown-content" id="brand">
+                    <label><input type="checkbox" name="brand" value="adidas"> Adidas</label>
+                    <label><input type="checkbox" name="brand" value="h&m"> H&M</label>
+                    <label><input type="checkbox" name="brand" value="mango"> Mango</label>
+                    <label><input type="checkbox" name="brand" value="nafnaf"> NAF NAF</label>
+                    <label><input type="checkbox" name="brand" value="nike"> NIKE</label>
+                    <label><input type="checkbox" name="brand" value="zara"> Zara</label>
+                    <label><input type="checkbox" name="brand" value="bershka"> Bershka</label>
+                    <label><input type="checkbox" name="brand" value="forever21"> Forever 21</label>
+                    <label><input type="checkbox" name="brand" value="guess"> Guess</label>
+                    <label><input type="checkbox" name="brand" value="quest"> Quest</label>
+                    <label><input type="checkbox" name="brand" value="michael kors"> Michael Kors</label>
+                    <label><input type="checkbox" name="brand" value="stradivarious"> Stradivarious</label>
+                    <label><input type="checkbox" name="brand" value="tommy hilfiger"> Tommy Hilfiger</label>
+                    <label><input type="checkbox" name="brand" value="studio f"> Studio F</label>
+                    <label><input type="checkbox" name="brand" value="ela"> Ela</label>
+                    <label><input type="checkbox" name="brand" value="koaj"> Koaj</label>
+                    <label><input type="checkbox" name="brand" value="tennis"> Tennis</label>
+                </div>
+            </div>
+    
+            <div class="filter-section">
+                <div class="filter-item" onclick="toggleDropdown('price')">Precio</div>
+                <div class="dropdown-content" id="price">
+                    <label><input type="checkbox" name="price" value="0-20000">$0 - $20.000</label>
+                    <label><input type="checkbox" name="price" value="21000-50000">$21000 - $50000</label>
+                    <label><input type="checkbox" name="price" value="51000-80000">$51.000 - $80.000</label>
+                    <label><input type="checkbox" name="price" value="81000-100000">$81000 - $100000</label>
+                    <label><input type="checkbox" name="price" value="101000-200000">$101.000 - $200.000</label>
+                    <label><input type="checkbox" name="price" value="201000-mas">$201.000 - Mas</label>
+                </div>
+            </div>
+    </div>
+
+    <section class="product-list" id="product">
+        <div class="results-text">
+            <h2>Tu busqueda de: <span>Camisetas para hombre</span></h2>
+        </div>
+
+        <div class="products">
+            <div class="row">
+                <img src="images/camiseta-10.webp" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Oversize Negra URBAN</h4>
+                    <p>$25.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-2.jpg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Slim Roja URBAN</h4>
+                    <p>$45.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-3.jpg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Slim Negra</h4>
+                    <p>$20.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-4.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Gris Estampada</h4>
+                    <p>$25.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-5.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Verde Militar Stradivarious</h4>
+                    <p>$20.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-8.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Azul claro Pepe Jeans </h4>
+                    <p>$60.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-6.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Gris</h4>
+                    <p>$20.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-8.jpg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Bloques Colores Mango</h4>
+                    <p>$25.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/prenda-13.jpg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Slim Verde URBAN</h4>
+                    <p>$20.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/Sin títhhulo.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta sencilla verde oliva</h4>
+                    <p>$20.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/imagennns.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Slimfit negra Koaj</h4>
+                    <p>$35.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-skullcol.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Estampada Diesel</h4>
+                    <p>$120.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-morada.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Slim purpura H&M</h4>
+                    <p>$30.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-skull.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Negra Estampada Skull</h4>
+                    <p>$35.000</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="images/camiseta-rosa.jpeg" alt="">
+
+                <div class="heart-icon">
+                    <i class='bx bx-heart'></i>
+                </div>
+
+                <div class="price">
+                    <h4>Camiseta Salmon Tennis Hombre</h4>
+                    <p>$40.000</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="contact">
+        <div class="contact-info">
+            <div class="first-info">
+                <img src="images/rewear-logo-comp.png" alt="">
+
+                <p>Cll 12 14 135 Centro, <br>Popayan-Cauca</p>
+                <p>+57 312 275 9192</p>
+                <p>diegokg1990@gmail.com</p>
+
+                <div class="social-icon">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-youtube'></i></a>
+                </div>
+            </div>
+
+            <div class="second-info">
+                <h4>Soporte</h4>
+                <p>Contactenos</p>
+                <p>Nosotros</p>
+                <p>Guia de Tallas</p>
+                <p>Compras y Devoluciones</p>
+                <p>Privacidad</p>
+             </div>
+
+            <div class="third-info">
+                <h4>Compras</h4>
+                <p>Hombres</p>
+                <p>Mujeres</p>
+                <p>Niños</p>
+                <p>Accesorios</p>
+                <p>Descuentos</p>
+            </div>
+
+            <div class="fourth-info">
+                <h4>Compañia</h4>
+                <p>¿Quines Somos?</p>
+                <p>Blog</p>
+                <p>Afiliate</p>
+                <p>Ingresa</p>
+            </div>  
+        </div>
+    </section>
+
+    <div class="end-text">
+        <p>Copyright © @2024. Todos los Derechos Reservados. Designed by Diego F. Mendez</p>
+    </div>
+   
+
+    <script src="scripts/resultados.js"></script>
+</body>
+</html>
