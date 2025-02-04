@@ -17,16 +17,14 @@
             <img src="images/rewear-logo.png" alt="ReWear logo" class="logo">
         </header>
         <main class="main-content">
-            <form>
+            <form id="register-form">
                 <h1>ReWear</h1>
-                <input type="text" placeholder="Usuario" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Contraseña" required>
-                <input type="password" placeholder="Confirmar contraseña" required>
-                <label for="recordar" class="radio-container">
-                    <input type="radio" id="recordar" name="recordar">
-                    Recordar contraseña
-                </label>
+                <input type="text" name="nombre" placeholder="Usuario" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="direccion" placeholder="Dirección" required>
+                <input type="text" name="telefono" placeholder="Teléfono" required>
+                <input type="password" name="contraseña" placeholder="Contraseña" required>
+                <input type="password" id="confirmarContraseña" placeholder="Confirmar contraseña" required>
                 
                 <button type="submit" class="sign-up-button">
                     REGISTRARME 
@@ -38,6 +36,8 @@
             </section>
         </main>
     </div>
+
+    <script src="scripts/registro.js"></script>
 </body>
 
 </html>
