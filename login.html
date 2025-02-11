@@ -17,26 +17,33 @@
             <img src="images/rewear-logo.png" alt="ReWear logo" class="logo">
         </header>
         <main class="main-content">
-            <form>
+            <form id="loginForm">
                 <h1>ReWear</h1>
-                <input type="email" placeholder="Usuario" required
-                >
-                <input type="password" placeholder="Contraseña" required>
+                <input type="email" id="email" placeholder="Usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                
                 <label for="recordar" class="checkbox-container">
                     <input type="checkbox" id="recordar" name="recordar">
                     Recordar contraseña
                 </label>
                 
                 <button type="submit" class="start-button">
-                    INGRESAR 
+                    INGRESAR
                 </button>
-            </form>
+                
+                <p id="loginMessage"></p> <!-- Para mostrar mensajes de éxito/error -->
+            </form>            
+
+            <p id="loginMessage"></p> <!-- Mensajes de error o éxito -->
+
             <section>
                 <a href="registro.html" class="registrarse">Registrarse</a> 
             </section>
             <a href="recuperar-contrasena.html" class="olvide">Olvide mi contraseña</a>
         </main>
     </div>
+
+    <script src="scripts/login.js"></script> <!-- Corrige la referencia al script -->
 </body>
 
 </html>

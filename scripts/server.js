@@ -1,42 +1,69 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const bcrypt = require("bcrypt"); // Para encriptar contraseñas
-const connection = require("./db"); // Conexión a MySQL
+const express = require('express');
+const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
+const port = 3001;
+
+// Configuración de CORS y JSON
 app.use(cors());
-app.use(express.json()); // Ya no necesitas body-parser
+app.use(express.json());
 
-const port = process.env.PORT || 3000;
-
-// Ruta para registrar usuarios
-app.post("/register", async (req, res) => {
-    try {
-        const { nombre, email, contraseña, direccion, telefono } = req.body;
-
-        if (!nombre || !email || !contraseña || !direccion || !telefono) {
-            return res.status(400).json({ error: "Todos los campos son obligatorios" });
-        }
-
-        // Encriptar la contraseña
-        const hashedPassword = await bcrypt.hash(contraseña, 10);
-
-        const sql = "INSERT INTO usuario (nombre, email, contraseña, direccion, telefono) VALUES (?, ?, ?, ?, ?)";
-        connection.query(sql, [nombre, email, hashedPassword, direccion, telefono], (err, result) => {
-            if (err) {
-                console.error("Error al registrar usuario:", err);
-                return res.status(500).json({ error: "Error al registrar usuario" });
-            }
-            res.status(201).json({ message: "Usuario registrado exitosamente" });
-        });
-    } catch (error) {
-        console.error("Error en el servidor:", error);
-        res.status(500).json({ error: "Error interno del servidor" });
-    }
+// Conexión con MySQL
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'ALLhope2024',  // Cambia esto si tienes otra contraseña
+    database: 'rewear'
 });
 
-// Iniciar el servidor
-app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
+db.connect((err) => {
+    if (err) {
+        console.error('Error al conectar con la base de datos:', err.stack);
+        return;
+    }
+    console.log('✅ Conectado a la base de datos');
+});
+
+// Ruta de prueba
+app.get('/', (req, res) => {
+    res.send('Servidor corriendo correctamente');
+});
+
+// Ruta para registrar usuario
+app.post("/register", (req, res) => {
+    const { nombre, email, contraseña, direccion, telefono } = req.body;
+    const query = 'INSERT INTO usuario (nombre, email, contraseña, direccion, telefono) VALUES (?, ?, ?, ?, ?)';
+    
+    db.query(query, [nombre, email, contraseña, direccion, telefono], (err, result) => {
+        if (err) {
+            console.error('❌ Error al registrar usuario:', err);
+            return res.status(500).json({ error: 'Error al registrar el usuario' });
+        }
+        res.json({ message: '✅ Usuario registrado correctamente' });
+    });
+});
+
+// Iniciar servidor
+app.listen(3001, () => {
+    console.log(`🚀 Servidor corriendo en http://localhost:3001`);
+});
+
+// Ruta para el inicio de sesión
+app.post("/login", (req, res) => {
+    const { email, contraseña } = req.body;
+
+    const query = 'SELECT * FROM usuario WHERE email = ? AND contraseña = ?';
+    db.query(query, [email, contraseña], (err, results) => {
+        if (err) {
+            console.error('Error al buscar usuario: ', err);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+
+        if (results.length > 0) {
+            res.json({ message: 'Inicio de sesión exitoso', user: results[0] });
+        } else {
+            res.status(401).json({ error: 'Credenciales incorrectas' });
+        }
+    });
 });
