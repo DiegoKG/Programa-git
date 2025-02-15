@@ -51,3 +51,45 @@ menu.onclick = () => {
     navmenu.classList.toggle('open');
 }
 
+document.addEventListener("DOMContentLoaded", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("query");
+
+    if (!query) {
+        document.getElementById("query-text").textContent = "No ingresaste ningún término de búsqueda.";
+        return;
+    }
+
+    document.getElementById("query-text").textContent = query;
+
+    try {
+        const response = await fetch(`http://localhost:3001/buscar?query=${query}`);
+        const productos = await response.json();
+
+        const contenedor = document.getElementById("lista-productos");
+        contenedor.innerHTML = ''; // Limpiar resultados anteriores
+
+        if (productos.length === 0) {
+            contenedor.innerHTML = '<p>No se encontraron productos</p>';
+        } else {
+            productos.forEach(producto => {
+                const productoHTML = `
+                    <div class="row">
+                        <img src="images/default-image.jpg" alt="${producto.nombre}">
+                        <div class="heart-icon">
+                            <i class='bx bx-heart'></i>
+                        </div>
+                        <div class="price">
+                            <h4>${producto.nombre}</h4>
+                            <p>$${producto.precio}</p>
+                        </div>
+                    </div>
+                `;
+                contenedor.innerHTML += productoHTML;
+            });
+        }
+    } catch (error) {
+        console.error("❌ Error en la búsqueda:", error);
+        document.getElementById("lista-productos").innerHTML = '<p>Ocurrió un error al cargar los productos.</p>';
+    }
+});

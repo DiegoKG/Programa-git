@@ -1,11 +1,10 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-
 const app = express();
 const port = 3001;
 
-// Configuración de CORS y JSON
+
 app.use(cors());
 app.use(express.json());
 
@@ -13,7 +12,7 @@ app.use(express.json());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'ALLhope2024',  // Cambia esto si tienes otra contraseña
+    password: 'ALLhope2024', 
     database: 'rewear'
 });
 
@@ -44,11 +43,6 @@ app.post("/register", (req, res) => {
     });
 });
 
-// Iniciar servidor
-app.listen(3001, () => {
-    console.log(`🚀 Servidor corriendo en http://localhost:3001`);
-});
-
 // Ruta para el inicio de sesión
 app.post("/login", (req, res) => {
     const { email, contraseña } = req.body;
@@ -67,3 +61,28 @@ app.post("/login", (req, res) => {
         }
     });
 });
+
+// Ruta para buscar productos
+
+app.get('/buscar', (req, res) => {
+    const { query } = req.query; // Captura lo que el usuario escribe en la barra de búsqueda
+  
+    const sql = `
+      SELECT id_producto, nombre, talla, descripcion, condicion, precio 
+      FROM producto 
+      WHERE nombre LIKE ? OR descripcion LIKE ? OR condicion LIKE ?
+    `;
+    const values = [`%${query}%`, `%${query}%`, `%${query}%`];
+  
+    db.query(sql, values, (err, results) => {
+      if (err) {
+        console.error('❌ Error en la consulta:', err);
+        return res.status(500).json({ error: 'Error en la búsqueda' });
+      }
+      res.json(results);
+    });
+  });
+  
+  app.listen(3001, () => {
+    console.log('🚀 Servidor corriendo en http://localhost:3001');
+  });
