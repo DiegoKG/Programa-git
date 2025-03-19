@@ -14,8 +14,13 @@ function buscarProductos() {
               html += '<p>No se encontraron productos</p>';
           } else {
               data.forEach(producto => {
+                    const imagenUrl = producto.imagenes
+                    ? `http://localhost:3001/uploads/${producto.imagenes}`  
+                    : "images/default-image.jpg";
+            
                   html += `
                     <div class="producto">
+                      <img src="${imagenUrl}" alt="${producto.nombre}" class="producto-img">
                       <h4>${producto.nombre}</h4>
                       <p>Talla: ${producto.talla}</p>
                       <p>${producto.descripcion}</p>
@@ -31,7 +36,7 @@ function buscarProductos() {
       .catch(error => console.error('❌ Error en la búsqueda:', error));
 }
 
-// Hacer que la función sea accesible desde el HTML
+
 window.buscarProductos = buscarProductos;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -51,3 +56,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+

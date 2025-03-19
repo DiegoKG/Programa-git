@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Producto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/subir.css">
+</head>
+<body>
+    <header>
+        <h1>Sube esa prenda que no usas!</h1>
+    </header>
+
+    <section class="upload-container">
+        <form id="subir-form" enctype="multipart/form-data">
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre del producto" required>
+            <input type="text" id="marca" name="marca" placeholder="Marca" required>
+            <input type="text" id="talla" name="talla" placeholder="Talla" required>
+
+           <label>Selecciona un color:</label>
+           
+            <div class="color-options">
+                <button class="color-btn" style="background-color: #000000;" data-color="Negro"></button>
+                <button class="color-btn" style="background-color: #FFFFFF; border: 1px solid #000;" data-color="Blanco"></button>
+                <button class="color-btn" style="background-color: #808080;" data-color="Gris"></button>
+                <button class="color-btn" style="background-color: #A52A2A;" data-color="Marrón"></button>
+                <button class="color-btn" style="background-color: #8B4513;" data-color="Café"></button>
+                <button class="color-btn" style="background-color: #D2691E;" data-color="Chocolate"></button>
+                <button class="color-btn" style="background-color: #FFD700;" data-color="Dorado"></button>
+                <button class="color-btn" style="background-color: #C0C0C0;" data-color="Plateado"></button>
+                <button class="color-btn" style="background-color: #B22222;" data-color="Rojo oscuro"></button>
+                <button class="color-btn" style="background-color: #FF0000;" data-color="Rojo"></button>
+                <button class="color-btn" style="background-color: #DC143C;" data-color="Carmesí"></button>
+                <button class="color-btn" style="background-color: #FF69B4;" data-color="Rosa fuerte"></button>
+                <button class="color-btn" style="background-color: #FFC0CB;" data-color="Rosa claro"></button>
+                <button class="color-btn" style="background-color: #FF8C00;" data-color="Naranja oscuro"></button>
+                <button class="color-btn" style="background-color: #FFA500;" data-color="Naranja"></button>
+                <button class="color-btn" style="background-color: #FFD700;" data-color="Amarillo"></button>
+                <button class="color-btn" style="background-color: #ADFF2F;" data-color="Verde lima"></button>
+                <button class="color-btn" style="background-color: #008000;" data-color="Verde"></button>
+                <button class="color-btn" style="background-color: #006400;" data-color="Verde oscuro"></button>
+                <button class="color-btn" style="background-color: #0000FF;" data-color="Azul"></button>
+                <button class="color-btn" style="background-color: #4682B4;" data-color="Azul acero"></button>
+                <button class="color-btn" style="background-color: #1E90FF;" data-color="Azul claro"></button>
+                <button class="color-btn" style="background-color: #4B0082;" data-color="Índigo"></button>
+                <button class="color-btn" style="background-color: #800080;" data-color="Púrpura"></button>
+
+                <!-- Selector de color-->
+                <input type="color" id="custom-color" class="color-picker">
+            </div>
+
+            <!-- Campo oculto para almacenar el color seleccionado -->
+            <input type="hidden" id="color" name="color" value="#000000">
+
+
+            <textarea id="descripcion" name="descripcion" placeholder="Descripción" required></textarea>
+            <input type="text" id="condicion" name="condicion" placeholder="Condición (Nuevo/Usado)" required>
+            <input type="number" id="precio" name="precio" placeholder="Precio" required>
+            <input type="file" id="imagen" name="imagen" accept="image/*" required>
+
+            <button type="submit">Subir Producto</button>
+        </form>
+    </section>
+
+    <div id="mensaje"></div>
+
+    <script src="scripts/subir.js"></script>
+</body>
+</html>

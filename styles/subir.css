@@ -1,0 +1,133 @@
+
+body, h1, h2, h3, h4, h5, h6, p, input, textarea, button {
+  font-family: 'Jost', sans-serif !important;
+}
+
+h1 {
+  text-align: center !important;
+  width: 100%;
+}
+
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 80px auto;
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.upload-container h1 {
+  color: #333;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center !important;
+  width: 100%;
+  display: block;
+}
+
+.upload-container form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-container input,
+.upload-container textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.upload-container input,
+.upload-container textarea,
+.upload-container button {
+  font-family: inherit;
+}
+
+.upload-container textarea {
+  resize: none;
+  height: 120px;
+}
+
+.upload-container button {
+  width: 100%;
+  max-width: 400px;
+  background-color: #30a330;
+  color: white;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.upload-container button:hover {
+  background-color: #248724;
+}
+
+#mensaje {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.color-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+}
+
+.color-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  flex: 0 0 40px;
+  background-size: cover;
+  display: inline-block;
+  appearance: none;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-btn.selected {
+  border: 3px solid black;
+  transform: scale(1.2);
+}
+
+.color-picker {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  flex: 0 0 auto;
+  appearance: none;
+}

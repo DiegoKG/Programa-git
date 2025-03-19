@@ -67,15 +67,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         const productos = await response.json();
 
         const contenedor = document.getElementById("lista-productos");
-        contenedor.innerHTML = ''; // Limpiar resultados anteriores
-
+        contenedor.innerHTML = ''; 
         if (productos.length === 0) {
             contenedor.innerHTML = '<p>No se encontraron productos</p>';
         } else {
-            productos.forEach(producto => {
+            productos.forEach(producto => {            
+                const imagenUrl = producto.imagenes
+                    ? `http://localhost:3001/uploads/${producto.imagenes}`
+                    : "images/default-image.jpg";
+            
                 const productoHTML = `
                     <div class="row">
-                        <img src="images/default-image.jpg" alt="${producto.nombre}">
+                        <img src="${producto.imagenes}" alt="${producto.nombre}">
                         <div class="heart-icon">
                             <i class='bx bx-heart'></i>
                         </div>
