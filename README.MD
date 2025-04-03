@@ -56,7 +56,7 @@ node server.js
 http://localhost:3001
 
 ## Contacto
-Para más información, puedes comunicarte a [312 275 9192 o diegokg@gmail.com].
+Para más información, puedes comunicarte a [312 275 9192 o diegokg1990@gmail.com].
 
 
 
