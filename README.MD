@@ -1,63 +1,22 @@
-# Proyecto Rewear Módulos de Inicio de Sesión y Registro
+# Módulo de Búsqueda de Productos  
 
-Este proyecto forma parte del desarrollo del sistema **Rewear**, incluyendo la implementación de los módulos de **inicio de sesión y registro de usuarios** utilizando **Node.js, Express y MySQL**.
+## Descripción  
+Este módulo implementa una barra de búsqueda funcional en la página `general.html`, permitiendo a los usuarios buscar productos dentro del catálogo. Actualmente la barra de búsqueda también está presente en otras páginas, pero su funcionalidad en JavaScript aún no ha sido implementada en ellas.  
 
-## Módulos desarrollados
+## Funcionalidad  
+- Captura la entrada del usuario en tiempo real.  
+- Filtra los productos disponibles y muestra resultados dinámicamente en `resultados.html`.  
+- Se basa en **JavaScript puro (Vanilla JS)** para gestionar eventos y manipulación del DOM.  
 
-### 1. Registro de usuarios
-Permite a los nuevos usuarios crear una cuenta proporcionando información básica como nombre, correo electrónico y contraseña.  
-- La contraseña se encripta con `bcrypt` antes de ser almacenada en la base de datos.  
-- Se validan los datos para evitar registros duplicados.  
+## Tecnologías Utilizadas  
+- **Frontend:** HTML, CSS, JavaScript  
+- **Backend:** No aplica en esta versión (solo frontend).  
 
-### 2. Inicio de sesión
-Los usuarios pueden acceder con su correo y contraseña.  
-- Se verifica la contraseña en la base de datos.  
-- Si las credenciales son correctas, se inicia sesión y se almacena la sesión del usuario.  
+## Instrucciones de Uso  
+1. Abrir `general.html` en un navegador.  
+2. Escribir en la barra de búsqueda para ver los resultados filtrados en tiempo real.  
+3. En futuras versiones, la funcionalidad se extenderá a otras páginas del sitio.  
 
-## Tecnologías utilizadas
-- **Node.js** - Servidor backend  
-- **Express.js** - Framework para manejar rutas y peticiones  
-- **MySQL** - Base de datos  
-- **bcrypt** - Encriptación de contraseñas  
-- **dotenv** - Manejo de variables de entorno  
+---
 
-## Estructura del proyecto
-/rewear  
-│── /public        → Archivos estáticos como CSS y JavaScript  
-│── /routes        → Definición de rutas para registro e inicio de sesión  
-│── /controllers   → Lógica de negocio de los módulos  
-│── /models        → Interacción con la base de datos  
-│── .env           → Configuración de credenciales y entorno  
-│── server.js      → Archivo principal del backend  
-│── package.json   → Dependencias del proyecto  
-│── README.md      → Este documento  
-
-
-## Instalación y uso
-
-1. Clonar el repositorio:
-
-git clone [(https://github.com/DiegoKG/Programa-git.git)] cd rewear
-
-2. Instalar dependencias:
-
-npm install
-
-3. Configurar variables de entorno (`.env`):
-
-DB_HOST=localhost DB_USER=root DB_PASSWORD=ALLhope2025 DB_NAME=rewear PORT=3001
-
-4. Iniciar el servidor:
-
-node server.js
-
-5. Acceder en el navegador a:
-
-http://localhost:3001
-
-## Contacto
-Para más información, puedes comunicarte a [312 275 9192 o diegokg1990@gmail.com].
-
-
-
-
+ *Este módulo forma parte de un sistema más amplio, con planes de expansión para hacer la barra de búsqueda funcional en todo el proyecto.*  
