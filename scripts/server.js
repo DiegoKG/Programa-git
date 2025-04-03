@@ -6,6 +6,8 @@ const port = 3001;
 const multer = require("multer");
 const path = require("path"); 
 const fs = require("fs");
+const nodemailer = require('nodemailer');
+
 
 // configuracion middlewires
 app.use(cors());
@@ -27,6 +29,15 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         cb(null, Date.now() + "-" + file.originalname); // Nombre único para cada imagen
     }
+});
+
+// Configuración de Nodemailer
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER, // Tu correo
+        pass: process.env.EMAIL_PASS, // Tu contraseña o App Password
+    },
 });
 
 const upload = multer({ storage });
@@ -115,8 +126,6 @@ app.get('/buscar', (req, res) => {
     });
 });
 
-
-
   // Ruta para subir producto
   app.post("/subir-producto", upload.single('imagen'), (req, res) => {
 
@@ -135,6 +144,44 @@ app.get('/buscar', (req, res) => {
         }
         res.status(201).json({ message: "✅ Producto subido correctamente" });
     });
+});
+
+// Ruta para la recuperación de contraseña
+app.post("/recuperar", async (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ error: "El correo es obligatorio." });
+    }
+
+    try {
+        // Generar un token (aquí usamos un hash simple, pero puede ser JWT u otro)
+        const resetToken = Buffer.from(email).toString("hex"); // Simulación de un token
+        const resetLink = `http://localhost:3001/reset-password?token=${resetToken}`;
+
+        // Configurar el correo
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: "Recuperación de contraseña",
+            html: `
+                <p>Hola,</p>
+                <p>Hemos recibido una solicitud para restablecer tu contraseña.</p>
+                <p>Haz clic en el siguiente enlace para continuar:</p>
+                <a href="${resetLink}">${resetLink}</a>
+                <p>Si no solicitaste este cambio, ignora este mensaje.</p>
+            `,
+        };
+
+        // Enviar correo
+        await transporter.sendMail(mailOptions);
+
+        res.json({ message: "Correo enviado con éxito. Revisa tu bandeja de entrada." });
+
+    } catch (error) {
+        console.error("Error al enviar el correo:", error);
+        res.status(500).json({ error: "Hubo un error al enviar el correo." });
+    }
 });
 
   app.listen(3001, () => {
